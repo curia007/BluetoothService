@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		C0A5CF872300B7BC0099A92A /* BluetoothService.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A5CF852300B7BC0099A92A /* BluetoothService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C0A5CF8E2300B8370099A92A /* BluetoothProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5CF8D2300B8370099A92A /* BluetoothProcessor.swift */; };
+		C0A5CFD52300C8EC0099A92A /* CentralService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A5CFD42300C8EC0099A92A /* CentralService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C0A5CF822300B7BC0099A92A /* BluetoothService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BluetoothService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0A5CF852300B7BC0099A92A /* BluetoothService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothService.h; sourceTree = "<group>"; };
 		C0A5CF862300B7BC0099A92A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0A5CF8D2300B8370099A92A /* BluetoothProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothProcessor.swift; sourceTree = "<group>"; };
+		C0A5CFD42300C8EC0099A92A /* CentralService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +52,8 @@
 			children = (
 				C0A5CF852300B7BC0099A92A /* BluetoothService.h */,
 				C0A5CF862300B7BC0099A92A /* Info.plist */,
+				C0A5CF8D2300B8370099A92A /* BluetoothProcessor.swift */,
+				C0A5CFD42300C8EC0099A92A /* CentralService.swift */,
 			);
 			path = BluetoothService;
 			sourceTree = "<group>";
@@ -95,6 +101,7 @@
 				TargetAttributes = {
 					C0A5CF812300B7BC0099A92A = {
 						CreatedOnToolsVersion = 11.0;
+						LastSwiftMigration = 1100;
 					};
 				};
 			};
@@ -131,6 +138,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0A5CF8E2300B8370099A92A /* BluetoothProcessor.swift in Sources */,
+				C0A5CFD52300C8EC0099A92A /* CentralService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +270,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 63579VC9UE;
@@ -277,6 +287,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.carmelouria.BluetoothService;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 			};
@@ -286,6 +297,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 63579VC9UE;
