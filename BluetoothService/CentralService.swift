@@ -32,9 +32,12 @@ internal class CentralService : NSObject
         self.centralManager = CBCentralManager(delegate: self, queue: bluetoothDispatchQueue)
     }
     
-    open func start(cbuuids: [CBUUID]? = nil, options: [String : Any]? = nil)
+    internal func start(cbuuids: [CBUUID]? = nil, options: [String : Any]? = nil)
     {
-        centralManager?.scanForPeripherals(withServices: cbuuids, options: options)
+        if let centralManager : CBCentralManager = self.centralManager
+        {
+            centralManager.scanForPeripherals(withServices: cbuuids, options: options)
+        }
     }
 }
 
@@ -77,5 +80,17 @@ extension CentralService : CBCentralManagerDelegate
         {
             debugPrint("[\(#function):\(#line)] peripheral: \(peripheral.debugDescription)")
         }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral)
+    {
+        debugPrint("[\(#function):\(#line)] peripheral: \(peripheral.debugDescription) did connect")
+
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber)
+    {
+        debugPrint("[\(#function):\(#line)] peripheral: \(peripheral.debugDescription) did discover")
+
     }
 }
