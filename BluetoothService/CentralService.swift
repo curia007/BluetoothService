@@ -11,12 +11,6 @@ import CoreBluetooth
 
 import os.log
 
-struct BTConstants {
-    // These are sample GATT service strings. Your accessory will need to include these services/characteristics in its GATT database
-    static let sampleServiceUUID = CBUUID(string: "AAAA")
-    static let sampleCharacteristicUUID = CBUUID(string: "BBBB")
-}
-
 internal class CentralService : NSObject
 {
     fileprivate let bluetoothDispatchQueue : DispatchQueue = DispatchQueue(label: "com.carmelouria.services.bluetooth", qos: .utility, attributes: .concurrent, autoreleaseFrequency: .inherit, target: nil)
@@ -53,20 +47,20 @@ extension CentralService : CBCentralManagerDelegate
        case .unauthorized:
            switch central.authorization {
            case .restricted:
-               os_log("Bluetooth is restricted on this device")
+                os_log("Bluetooth is restricted on this device")
            case .denied:
-               os_log("The application is not authorized to use the Bluetooth Low Energy role")
+                os_log("The application is not authorized to use the Bluetooth Low Energy role")
            default:
-               os_log("Something went wrong. Cleaning up cbManager")
+               os_log("Something went wrong. Cleaning up Central Manager")
            }
        case .poweredOff:
-           os_log("Bluetooth is currently powered off")
+            os_log("Bluetooth is currently powered off")
        case .poweredOn:
-           os_log("Starting central Manager")
-           let matchingOptions = [CBConnectionEventMatchingOption.serviceUUIDs: [BTConstants.sampleServiceUUID]]
-           central.registerForConnectionEvents(options: matchingOptions)
+            os_log("CBCentralManager state .poweredOn")
+            central.registerForConnectionEvents(options: nil)
+            NotificationCenter.default.post(name: .bluetoothPoweredOn, object: nil)
        default:
-           os_log("Cleaning up cbManager")
+            os_log("Cleaning up Cenral Manager")
        }
     }
     
@@ -93,4 +87,9 @@ extension CentralService : CBCentralManagerDelegate
         debugPrint("[\(#function):\(#line)] peripheral: \(peripheral.debugDescription) did discover")
 
     }
+}
+
+extension Notification.Name
+{
+    static let bluetoothPoweredOn = Notification.Name("bluetoothPoweredOnNotification")
 }
