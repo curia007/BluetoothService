@@ -86,10 +86,14 @@ extension CentralService : CBCentralManagerDelegate
     {
         debugPrint("[\(#function):\(#line)] peripheral: \(peripheral.debugDescription) did discover")
 
+        let userInfo : [AnyHashable : Any] = ["peripheral" : peripheral]
+        NotificationCenter.default.post(name: .bluetoothDiscoveredDevice, object: nil, userInfo: userInfo)
+
     }
 }
 
-extension Notification.Name
+public extension Notification.Name
 {
     static let bluetoothPoweredOn = Notification.Name("bluetoothPoweredOnNotification")
+    static let bluetoothDiscoveredDevice = Notification.Name("bluetoothDiscoveredDevice")
 }
